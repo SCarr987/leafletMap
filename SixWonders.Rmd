@@ -1,0 +1,32 @@
+---
+title: "Six Wonders of the World"
+author: "S Carroll"
+date: "May 21, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+suppressWarnings(library(leaflet))
+```
+
+Hover over the markers in the map below to read the name of six of the seven wonders of the world.  The seventh wonder is the Aurora Borealis, which is in the sky of the northern latitudes. 
+
+```{r leafMap}
+library(leaflet)
+
+df <- data.frame(
+      lat = c(-22.790278,36.3,-18.286111,27.988056,19.493056,-17.924444),
+      lng = c(-43.155556,-112.6,147.7,86.925278,-102.251111,25.856667),
+      name7 = c('Guanabara Bay','Grand Canyon','Great Barrier Reef',
+                'Mount Everest','Parícutin','Victoria Falls')
+)
+
+df %>%
+      leaflet()  %>%
+      addTiles()  %>%
+      addMarkers(~lng, ~lat, popup = ~name7, label = ~name7)
+
+
+```
+
